@@ -2,9 +2,11 @@ import pytest
 from data import Data
 from pages.main_page import MainPage
 from pages.question_page import QuestionPage
+import allure
 
 
 class TestQuestions:
+    @allure.title("Проверка ответа на вопрос #{question_id}")
     @pytest.mark.parametrize('question_id, expected_answer', Data.QUESTION_ANSWERS)
     def test_question_answer(self, driver, question_id, expected_answer):
         main_page = MainPage(driver)

@@ -25,3 +25,15 @@ class BasePage:
         return WebDriverWait(self.driver, timeout).until(
             EC.visibility_of_element_located(locator)
         )
+
+    @allure.step("Ожидать URL, содержащего '{url}'")
+    def wait_for_url_contains(self, url, timeout=10):
+        WebDriverWait(self.driver, timeout).until(EC.url_contains(url))
+
+    @allure.step("Переключиться на окно с индексом {window_index}")
+    def switch_to_window(self, window_index):
+        self.driver.switch_to.window(self.driver.window_handles[window_index])
+
+    @allure.step("Получить текущий URL")
+    def get_current_url(self):
+        return self.driver.current_url

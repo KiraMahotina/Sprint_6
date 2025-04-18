@@ -1,5 +1,3 @@
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from .base_page import BasePage
 from locators.order_locators import OrderPageLocators
 from selenium.webdriver.common.by import By
@@ -48,5 +46,5 @@ class OrderPage(BasePage):
     def is_success_popup_displayed(self):
         self.wait_for_element(OrderPageLocators.SUCCESS_POPUP)
         self.click_element(OrderPageLocators.CHECK_STATUS_BUTTON)
-        WebDriverWait(self.driver, 20).until(EC.url_contains(Curls.STATUS_PAGE))
+        self.wait_for_url_contains(Curls.STATUS_PAGE, timeout=20)
         return True
